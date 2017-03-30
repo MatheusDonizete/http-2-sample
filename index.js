@@ -9,9 +9,6 @@ const options = {
     cert: fs.readFileSync(`${__dirname}/server.crt`)
 };
 
-app.use(`/styles/fonts`, express.static(`${__dirname}/node_modules/materialize-css/fonts`));
-app.use(`/sw`, express.static(`${__dirname}/static/js/sw`));
-
 const server = spdy.createServer(options, app);
 app.get('/', (req, res) => {
     const pageHTML = fs.readFileSync(`${__dirname}/static/index.html`);
@@ -46,6 +43,9 @@ app.get('/', (req, res) => {
     res.set('Content-Type', 'text/html');
     res.send(new Buffer(pageHTML));
 });
+
+app.use(`/styles/fonts`, express.static(`${__dirname}/static/fonts`));
+app.use(express.static(`${__dirname}/static`));
 
 server.listen(process.env.PORT || 443, () => {
     let host = server.address().address;
