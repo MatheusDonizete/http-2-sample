@@ -1,6 +1,6 @@
 'use strict';
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw-cache.js')
+    navigator.serviceWorker.register('./sw-cache.js', { scope: './' })
         .then((reg) => {
             if (reg.installing) {
                 console.log('Service worker installing');

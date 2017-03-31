@@ -3,6 +3,8 @@ const cacheVersion = 1;
 const currentCaches = {
     font: `font-cache-v${cacheVersion}`
 };
+//Starter example, caching some files
+/*
 const cacheUrls = [
     '/',
     '/js/app.js',
@@ -16,20 +18,17 @@ self.addEventListener('install', function(event) {
             return cache.addAll(cacheUrls);
         })
     );
-});
+});*/
 
 self.addEventListener('activate', function(event) {
     const expectedCacheNames = Object.keys(currentCaches)
         .map(key => currentCaches[key]);
-    // Active worker won't be treated as activated until promise resolves successfully.
     event.waitUntil(
-        caches.keys().then(function(cacheNames) {
-            console.log(cacheNames);
+        caches.keys().then(cacheNames => {
             return Promise.all(
-                cacheNames.map(function(cacheName) {
+                cacheNames.map(cacheName => {
                     if (expectedCacheNames.indexOf(cacheName) == -1) {
-                        console.log('Deleting out of date cache:', cacheName);
-                        return caches.delete(cacheName);
+                        return caches.delete(cacheName); //exclusão de cache velho
                     }
                 })
             );
@@ -51,7 +50,7 @@ self.addEventListener('fetch', function(event) {
                 return fetch(event.request.clone()).then(function(response) {
                     if (response.status < 400 &&
                         response.headers.has('content-type') &&
-                        response.headers.get('content-type').match(/^font\//i)) {
+                        response.headers.get('content-type').match('font')) {
                         console.log('Caching the response to', event.request.url);
                         cache.put(event.request, response.clone());
                     } else {

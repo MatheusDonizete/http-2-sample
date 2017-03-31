@@ -44,6 +44,13 @@ app.get('/', (req, res) => {
     res.send(new Buffer(pageHTML));
 });
 
+app.use(function(req, res, next) {
+    const matchUrl = '/styles/fonts';
+    if (req.url.substring(0, matchUrl.length) === matchUrl) {
+        res.setHeader('content-type', 'font');
+    }
+    return next();
+});
 app.use(`/styles/fonts`, express.static(`${__dirname}/static/fonts`));
 app.use(express.static(`${__dirname}/static`));
 
