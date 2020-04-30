@@ -26,7 +26,7 @@
     "dependencies": {
         "browser-storage": "https://github.com/MatheusDonizete/browser-storage.git",
         "express": "^4.15.2",
-        "jquery": "^3.2.1",
+        "jquery": "^3.5.0",
         "materialize-css": "^0.98.1",
         "spdy": "^3.4.4",
         "sw-precache": "^5.1.0"
