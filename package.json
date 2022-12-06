@@ -25,7 +25,7 @@
     "homepage": "https://github.com/MatheusDonizete/capivara-conf-example#readme",
     "dependencies": {
         "browser-storage": "https://github.com/MatheusDonizete/browser-storage.git",
-        "express": "^4.15.2",
+        "express": "^4.17.3",
         "jquery": "^3.2.1",
         "materialize-css": "^0.98.1",
         "spdy": "^3.4.4",
